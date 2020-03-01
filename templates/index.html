@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block title %}moviePlan 电影计划{% endblock %}{% block content -%}
+<nav>
+    <div id="navbar" class="clear">
+        <div class="logo">
+            <h1 class="logo">moviePlan 电影计划</h1>
+        </div>
+        <div class="search">
+            <form action="{{url_for('indexViews.search')}}">
+                <input type="text" class="form-control" name="search" id="search", placeholder="搜索关键字">
+                <button class="btn btn-default searchButton">搜索</button>
+            </form>
+        </div>
+        
+    </div>
+</nav>
+
+{% endblock %}
