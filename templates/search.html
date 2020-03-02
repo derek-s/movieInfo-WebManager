@@ -1,5 +1,5 @@
-{% extends "base.html" %}{% block title %}moviePlan 电影计划{% endblock %}{% block content -%}
-{%import 'macros.html' as macros%}
+{% extends "base.html" %}{% block title %}{{ keyword }} 搜索结果 | moviePlan 电影计划{% endblock %}{% block content -%}
+{%import 'search_macors.html' as macros%}
 <nav>
     <div id="navbar" class="clear">
         <div class="logo">
@@ -15,8 +15,9 @@
     </div>
 </nav>
 <div class="content">
+    <div style="font-size: 22px; margin-bottom: 25px"><span style="color:red">{{ keyword }}</span> 搜索结果 </div>
     <ul>
-        {% for eachData in allData %}
+        {% for eachData in result %}
         <li class="movieList">
             <div class="movieBlock">
                 <div class="moviePoster">
@@ -55,7 +56,7 @@
             <span>共计 {{ totalNum }} 条</span>
         </div>
         <div class="pagination">
-            {%if pagination%} {{macros.paginate(pagination,'indexViews.index')}} {%endif%}
+            {%if pagination%} {{macros.paginate(pagination,'indexViews.search',keyword=request.args.get('keyword') | safe)}} {%endif%}
         </div>
     </div>
 </div>
@@ -63,7 +64,7 @@
     $(function () {
         $('#transfer').click(function () {
             var page = $('#transfer_page').val();
-            window.location.href = "{{url_for('indexViews.index')}}" + "?page=" + page;
+            window.location.href = "{{url_for('indexViews.search')}}?keyword={{ keyword }}" + "&page=" + page;
         })
     })
 </script>
