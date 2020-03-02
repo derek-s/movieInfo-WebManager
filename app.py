@@ -9,9 +9,6 @@
 
 from flask import Flask
 from flask_pymongo import PyMongo
-from views.index import indexViews
-
-
 from config import SECRET_KEY, dbConfig
 
 app = Flask(__name__, template_folder="templates")
@@ -26,9 +23,3 @@ app.config.update(
 mongo = PyMongo(app)
 
 app.jinja_env.auto_reload = True
-
-app.register_blueprint(indexViews)
-
-
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5050)
